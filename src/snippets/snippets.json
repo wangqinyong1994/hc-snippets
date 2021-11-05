@@ -1,0 +1,152 @@
+{
+  "useMemoHc": {
+    "prefix": "hcuseMemo",
+    "body": [
+      "useMemo(() => {",
+      "\t${1:callback}",
+      "}, [${2:input}])"
+    ]
+  },
+  "useCallbackHc": {
+    "prefix": "hcuseCallback",
+    "body": [
+      "useCallback(() => {",
+      "\t${1:callback}",
+      "}, [${2:input}])"
+    ]
+  },
+  "globalVarView": {
+    "prefix": "hcgv",
+    "body": [
+      "window.${1:globalVar} = '<%= ${1:globalVar} %>'"
+    ],
+    "description": "设置view里全局变量(honeycomb global variable)"
+  },
+  "routeConfig": {
+    "prefix": "hcrc",
+    "body": [
+      "${1:proxyName}: {",
+      "\tendpoint: config.services.${1:proxyName}_server",
+      "\tclient: 'http',",
+      "\tapi: [",
+      "\t\t'/*'",
+      "\t]",
+      "}"
+    ],
+    "description": "设置router文件里代理配置(honeycomb router config)"
+  },
+  "spaConfig": {
+    "prefix": "hcspa",
+    "body": [
+      "${1:globalVar}: config.${1:globalVar}"
+    ],
+    "description": "设置spa.js里注入的全局变量(honeycomb spa)"
+  },
+  "rfcStore": {
+    "prefix": "hcrfcstore",
+    "body": [
+      "import React from 'react';",
+      "import { observer } from 'mobx-react';",
+      "import { useStore } from '@store/createStore';",
+      "",
+      "export default observer(() => {",
+      "\tconst { ${1:storePart} } = useStore();",
+      "\t",
+      "\treturn (",
+      "\t\t<div>",
+      "\t\t\t$0",
+      "\t\t</div>",
+      "\t);",
+      "});",
+      ""
+    ],
+    "description": "带有store的函数式组件(react function component with store)"
+  },
+  "exportApiGet": {
+    "prefix": "hcepapiget",
+    "body": [
+      "// ${1:apiDesc}",
+      "export const api_${2:getName} = params =>",
+      "\tget(`${3:serverNameBesideGetName}/${2:getName}`, params);",
+      ""
+    ],
+    "description": "导出api get方法"
+  },
+  "exportApiPost": {
+    "prefix": "hcepapipost",
+    "body": [
+      "// ${1:apiDesc}",
+      "export const api_${2:getName} = params =>",
+      "\tpost(`${3:serverNameBesideGetName}/${2:getName}`, params);",
+      ""
+    ],
+    "description": "导出api post方法"
+  },
+  "exportStore": {
+    "prefix": "hcepstore",
+    "body": [
+      "import { action, makeAutoObservable } from 'mobx';",
+      "",
+      "class ${1/(.*)/${1:/capitalize}/}Store {",
+      "\tconstructor() {",
+      "\t\tmakeAutoObservable(this);",
+      "\t}",
+      "",
+      "\t// ${2:keyNameDesc}",
+      "\tstore_${3:keyName} = ${4:keyValue};",
+      "",
+      "\t// 设置${2:keyNameDesc}",
+      "\t@action store_set${3/(.*)/${1:/capitalize}/} = ${3:keyName} => {",
+      "\t\tthis.store_${3:keyName} = ${3:keyName};",
+      "\t}",
+      "}",
+      "",
+      "const ${1:storeName} = new ${1/(.*)/${1:/capitalize}/}Store();",
+      "",
+      "export default ${1:storeName};",
+      ""
+    ],
+    "description": "初始化store下新模块"
+  },
+  "storeKeyFunc": {
+    "prefix": "hcstorekf",
+    "body": [
+      "// ${1:keyNameDesc}",
+      "store_${2:keyName} = ${4:keyValue};",
+      "",
+      "// 设置${1:keyNameDesc}",
+      "@action store_set${2/(.*)/${1:/capitalize}/} = ${2:keyName} => {",
+      "\tthis.store_${2:keyName} = ${2:keyName};",
+      "}"
+    ],
+    "description": "store里添加成员与设置方法"
+  },
+  "asyncFunc": {
+    "prefix": "hcasyncfunc",
+    "body": [
+      "const ${1:functionName} = async (${2:params}) => {",
+      "\ttry {",
+      "\t\t${3}",
+      "\t} catch (error) {",
+      "\t\t${4}",
+      "\t}",
+      "};",
+      ""
+    ],
+    "description": "创建一个异步函数(函数表达式)"
+  },
+  "asyncFuncDeclaration": {
+    "prefix": "hcasyncfuncdec",
+    "body": [
+      "async function ${1:functionName}() {",
+      "\ttry {",
+      "\t\t${3}",
+      "\t} catch (error) {",
+      "\t\t${4}",
+      "\t}",
+      "};",
+      ""
+    ],
+    "description": "创建一个异步函数(函数声明)"
+  }
+}
