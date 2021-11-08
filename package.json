@@ -6,7 +6,7 @@
 	"engines": {
 		"vscode": "^1.61.0"
 	},
-  "icon": "https://tva1.sinaimg.cn/large/008i3skNgy1gw0xle4scsj303u042jr6.jpg",
+  "icon": "images/logo.jpeg",
   "keywords": [
     "snippets",
     "react",
@@ -14,6 +14,7 @@
     "private project"
   ],
   "publisher": "wqy",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/wangqinyong1994/hc-snippets.git"
